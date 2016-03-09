@@ -1,8 +1,6 @@
 #include "../include/EZpiano.hpp"
 
 EzPiano::EzPiano(){
-
-	QGraphicsScene();
 	board.push_back(new EzKey("white","DO1",0,0,this));
 	board.push_back(new EzKey("white","RE1",20,0,this));
 	board.push_back(new EzKey("white","MI1",40,0,this));
