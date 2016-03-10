@@ -10,8 +10,8 @@
 #include <iostream>
 #include <string>
 
-#define TONE_WIDTH 5
-#define TONE_HEIGHT 5
+#define TONE_WIDTH 10
+#define TONE_HEIGHT 10
 
 enum NoteState {neutral, correct, wrong};
 
