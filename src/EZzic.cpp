@@ -42,6 +42,9 @@ int main(int argc, char* argv[])
     notes.push_back("LA2");
     notes.push_back("SI2");
     scoreScene->setNotes(notes);
+    scoreScene->getNote(0)->setState(wrong);
+    scoreScene->getNote(1)->setState(correct);
+
 
 	QVBoxLayout *mainLayout = new QVBoxLayout();
     mainLayout->addWidget(scoreView);

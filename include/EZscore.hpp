@@ -20,6 +20,7 @@ class EzScore : public QGraphicsScene{
         EzScore();
         ~EzScore();
         void setNotes(std::vector<std::string>);
+        EzNote* getNote(int);
 
 	private:
         std::vector<EzNote*> _notes;

@@ -13,6 +13,7 @@ EzScore::~EzScore(){}
 
 void EzScore::setNotes(std::vector<std::string> notes){
     std::vector<EzNote*> newNotes;
+    //begin right after the sol key
     float x = SCORE_INNERLINE*5;
     float space = (SCORE_LENGTH-x)/notes.size();
     float y = 0;
@@ -37,4 +38,8 @@ void EzScore::setNotes(std::vector<std::string> notes){
         x += space;
     }
     _notes = newNotes;
+}
+
+EzNote* EzScore::getNote(int i){
+    return _notes[i];
 }
