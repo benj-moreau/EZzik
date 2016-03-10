@@ -10,14 +10,15 @@
 #include <iostream>
 #include <string>
 
-#define TONE_WIDTH 10
+#define TONE_WIDTH 11
 #define TONE_HEIGHT 10
 
 enum NoteState {neutral, correct, wrong};
+enum NoteAlteration {none, diese, bemol};
 
 class EzNote : public QGraphicsEllipseItem{
     public :
-        EzNote(std::string, int, int, QGraphicsScene*);
+        EzNote(std::string, NoteAlteration, int, int, QGraphicsScene*);
         ~EzNote();
 			
         std::string getNote();

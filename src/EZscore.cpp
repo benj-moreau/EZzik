@@ -17,24 +17,28 @@ void EzScore::setNotes(std::vector<std::string> notes){
     float x = SCORE_INNERLINE*5;
     float space = (SCORE_LENGTH-x)/notes.size();
     float y = 0;
+    NoteAlteration alter;
     //y position on score
     for(int i=notes.size()-1;i>=0;--i){
         if (notes[i]=="DO1"){y=5.5*SCORE_INNERLINE;}
-        else if (notes[i]=="RE1"){y=5*SCORE_INNERLINE;}
-        else if (notes[i]=="MI1"){y=4.5*SCORE_INNERLINE;}
-        else if (notes[i]=="FA1"){y=4*SCORE_INNERLINE;}
-        else if (notes[i]=="SOL1"){y=3.5*SCORE_INNERLINE;}
-        else if (notes[i]=="LA1"){y=3*SCORE_INNERLINE;}
-        else if (notes[i]=="SI1"){y=2.5*SCORE_INNERLINE;}
-        else if (notes[i]=="DO2"){y=2*SCORE_INNERLINE;}
-        else if (notes[i]=="RE2"){y=1.5*SCORE_INNERLINE;}
-        else if (notes[i]=="MI2"){y=1*SCORE_INNERLINE;}
-        else if (notes[i]=="FA2"){y=0.5*SCORE_INNERLINE;}
-        else if (notes[i]=="SOL2"){y=0*SCORE_INNERLINE;}
-        else if (notes[i]=="LA2"){y=-0.5*SCORE_INNERLINE;}
-        else if (notes[i]=="SI2"){y=-1.0*SCORE_INNERLINE;}
+        else if (notes[i].substr(0,3)=="RE1"){y=5*SCORE_INNERLINE;}
+        else if (notes[i].substr(0,3)=="MI1"){y=4.5*SCORE_INNERLINE;}
+        else if (notes[i].substr(0,3)=="FA1"){y=4*SCORE_INNERLINE;}
+        else if (notes[i].substr(0,4)=="SOL1"){y=3.5*SCORE_INNERLINE;}
+        else if (notes[i].substr(0,3)=="LA1"){y=3*SCORE_INNERLINE;}
+        else if (notes[i].substr(0,3)=="SI1"){y=2.5*SCORE_INNERLINE;}
+        else if (notes[i].substr(0,3)=="DO2"){y=2*SCORE_INNERLINE;}
+        else if (notes[i].substr(0,3)=="RE2"){y=1.5*SCORE_INNERLINE;}
+        else if (notes[i].substr(0,3)=="MI2"){y=1*SCORE_INNERLINE;}
+        else if (notes[i].substr(0,3)=="FA2"){y=0.5*SCORE_INNERLINE;}
+        else if (notes[i].substr(0,4)=="SOL2"){y=0*SCORE_INNERLINE;}
+        else if (notes[i].substr(0,3)=="LA2"){y=-0.5*SCORE_INNERLINE;}
+        else if (notes[i].substr(0,3)=="SI2"){y=-1.0*SCORE_INNERLINE;}
         else{y=5.5*SCORE_INNERLINE;}
-        newNotes.push_back(new EzNote(notes[i],x,y,this));
+        if (notes[i][notes[i].length()-1]=='B'){alter = bemol;}
+        else if(notes[i][notes[i].length()-1]=='#'){alter = diese;}
+        else{alter=none;}
+        newNotes.push_back(new EzNote(notes[i],alter,x,y,this));
         x += space;
     }
     _notes = newNotes;

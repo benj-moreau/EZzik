@@ -26,25 +26,29 @@ int main(int argc, char* argv[])
     EzScoreView *scoreView = new EzScoreView(scoreScene);
 
     //score load exemple : JASONE
+    /*---------------------------------------------*/
     std::vector<std::string> notes;
+    //format
     notes.push_back("DO1");
     notes.push_back("RE1");
-    notes.push_back("MI1");
+    notes.push_back("MI1B");
     notes.push_back("FA1");
     notes.push_back("SOL1");
     notes.push_back("LA1");
-    notes.push_back("SI1");
+    notes.push_back("SI1#");
     notes.push_back("DO2");
     notes.push_back("RE2");
     notes.push_back("MI2");
     notes.push_back("FA2");
     notes.push_back("SOL2");
     notes.push_back("LA2");
-    notes.push_back("SI2");
+    notes.push_back("SI2#");
+    //load score
     scoreScene->setNotes(notes);
+    //set note by index.
     scoreScene->getNote(0)->setState(wrong);
     scoreScene->getNote(1)->setState(correct);
-
+    /*---------------------------------------------*/
 
 	QVBoxLayout *mainLayout = new QVBoxLayout();
     mainLayout->addWidget(scoreView);
@@ -57,7 +61,7 @@ int main(int argc, char* argv[])
     w->setWindowTitle("EZzik");
     w->setWindowIcon(QIcon("res/icone.png"));
 
-    w->setMinimumWidth(400);
+    w->setMinimumWidth(430);
     w->setMinimumHeight(310);
     
     w->show();

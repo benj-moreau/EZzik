@@ -4,6 +4,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsItem>
 #include <QString>
+#include <QPen>
 
 #include <iostream>
 #include <string>
@@ -19,6 +20,8 @@ class EzScore : public QGraphicsScene{
     public :
         EzScore();
         ~EzScore();
+
+        /* string note format : NOTE(1|2)[#|B] ex: SOL1# LA2 LA1B ... */
         void setNotes(std::vector<std::string>);
         EzNote* getNote(int);
 
