@@ -9,6 +9,7 @@
 #include <QColor>
 #include <iostream>
 #include <string>
+#include <QPoint>
 
 #define TONE_WIDTH 11
 #define TONE_HEIGHT 10
@@ -20,13 +21,17 @@ class EzNote : public QGraphicsEllipseItem{
     public :
         EzNote(std::string, NoteAlteration, int, int, QGraphicsScene*);
         ~EzNote();
-			
+		QGraphicsTextItem* getAlter();
         std::string getNote();
+		QPen getPen();
+		QPoint getPos();
         void setState(NoteState);
 
 	private:
         std::string _note;
         NoteState _state;
+		QGraphicsTextItem *alter;
+		QGraphicsLineItem *line;
 	
 };
 

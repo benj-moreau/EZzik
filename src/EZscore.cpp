@@ -1,6 +1,7 @@
 #include "../include/EZscore.hpp"
 
 EzScore::EzScore(){
+	currentNoteIndex = 0;
     for(int i=1;i<=5;++i){
         this->addItem(new QGraphicsLineItem(0,SCORE_INNERLINE*i,SCORE_LENGTH,SCORE_INNERLINE*i));
     }
@@ -12,6 +13,10 @@ EzScore::EzScore(){
 EzScore::~EzScore(){}
 
 void EzScore::setNotes(std::vector<std::string> notes){
+	int notesSize = _notes.size();
+	for(int i = 0; i < notesSize; ++i){
+		delete _notes[i];
+	}
     std::vector<EzNote*> newNotes;
     //begin right after the sol key
     float x = SCORE_INNERLINE*5;
@@ -42,8 +47,11 @@ void EzScore::setNotes(std::vector<std::string> notes){
         x += space;
     }
     _notes = newNotes;
+	emit sendTextNotes(_notes);
 }
 
 EzNote* EzScore::getNote(int i){
     return _notes[i];
 }
+
+void EzScore::recieveNotes(std::vector<std::string> notes){ setNotes(notes); }

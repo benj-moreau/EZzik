@@ -34,6 +34,7 @@ EzPiano::~EzPiano(){}
 void EzPiano::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent){
 	int xSPos = mouseEvent->lastScenePos().x(), ySPos = mouseEvent->lastScenePos().y();
 	if(itemAt(xSPos,ySPos) != NULL){
-		dynamic_cast<EzKey*>(itemAt(xSPos,ySPos))->testPass();
+		emit sendKey(dynamic_cast<EzKey*>(itemAt(xSPos,ySPos))->getNote());
 	}
 }
+

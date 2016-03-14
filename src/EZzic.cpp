@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QObject>
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -9,11 +10,20 @@
 #include <QPen>
 #include <QBrush>
 #include <QColor>
+#include <QString>
+
+#include <vector>
 
 #include "../include/EZpiano.hpp"
 #include "../include/EZpianoview.hpp"
 #include "../include/EZscore.hpp"
 #include "../include/EZscoreview.hpp"
+#include "../include/EZselection.hpp"
+#include "../include/EZfiledialog.hpp"
+#include "../include/EZtextnote.hpp"
+#include "../include/EZnotenames.hpp"
+#include "../include/EZnotenamesview.hpp"
+
 
 int main(int argc, char* argv[])
 {
@@ -22,38 +32,30 @@ int main(int argc, char* argv[])
     EzPiano *Pianoscene = new EzPiano();
     EzPianoView *pianoView = new EzPianoView(Pianoscene);
     pianoView->setStyleSheet("background: transparent; border-style: none;");
+
     EzScore *scoreScene = new EzScore();
     EzScoreView *scoreView = new EzScoreView(scoreScene);
 
-    //score load exemple : JASONE
-    /*---------------------------------------------*/
-    std::vector<std::string> notes;
-    //format
-    notes.push_back("DO1");
-    notes.push_back("RE1");
-    notes.push_back("MI1B");
-    notes.push_back("FA1");
-    notes.push_back("SOL1");
-    notes.push_back("LA1");
-    notes.push_back("SI1#");
-    notes.push_back("DO2");
-    notes.push_back("RE2");
-    notes.push_back("MI2");
-    notes.push_back("FA2");
-    notes.push_back("SOL2");
-    notes.push_back("LA2");
-    notes.push_back("SI2#");
-    //load score
-    scoreScene->setNotes(notes);
-    //set note by index.
-    scoreScene->getNote(0)->setState(wrong);
-    scoreScene->getNote(1)->setState(correct);
-    /*---------------------------------------------*/
+	EzNoteNames *enm = new EzNoteNames();
+    EzNoteNamesView *enmv = new EzNoteNamesView(enm);
+
+	EzSelection *ezselect = new EzSelection();
+	EzFileDialog *ezfd = new EzFileDialog();
+
+	QObject::connect(ezfd,SIGNAL(sendDir(QString)),ezselect,SLOT(recieveDir(QString)));
+	QObject::connect(ezselect,SIGNAL(sendScore(std::vector<std::string>)),scoreScene,SLOT(recieveNotes(std::vector<std::string>)));
+
+	QObject::connect(scoreScene, SIGNAL(sendTextNotes(std::vector<EzNote*>)), enm, SLOT(recieveTextNotes(std::vector<EzNote*>)));
+	QObject::connect(Pianoscene, SIGNAL(sendKey(std::string)), enm, SLOT(recievePianoKey(std::string)));
 
 	QVBoxLayout *mainLayout = new QVBoxLayout();
+	QHBoxLayout *scoreChooseLayout = new QHBoxLayout();
+	scoreChooseLayout->addWidget(ezselect);
+	scoreChooseLayout->addWidget(ezfd);
+	mainLayout->addLayout(scoreChooseLayout);
     mainLayout->addWidget(scoreView);
+	mainLayout->addWidget(enmv);
     mainLayout->addWidget(pianoView);
-
     QWidget *w = new QWidget();
     
     w->setLayout(mainLayout);

@@ -12,9 +12,13 @@
 #include <map>
 	
 class EzPiano : public QGraphicsScene{
+	Q_OBJECT
 	public : EzPiano();
 	 		~EzPiano();
 			void mousePressEvent(QGraphicsSceneMouseEvent*);
+
+	signals:
+		void sendKey(std::string);
 
 	private:
 		std::vector<EzKey*> board;
