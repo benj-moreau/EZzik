@@ -23,6 +23,7 @@ class EzNote : public QGraphicsEllipseItem{
         ~EzNote();
 		QGraphicsTextItem* getAlter();
         std::string getNote();
+		NoteState getState();
 		QPen getPen();
 		QPoint getPos();
         void setState(NoteState);

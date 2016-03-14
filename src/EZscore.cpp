@@ -17,6 +17,9 @@ void EzScore::setNotes(std::vector<std::string> notes){
 	for(int i = 0; i < notesSize; ++i){
 		delete _notes[i];
 	}
+	for(int i = 0; i < notesSize; ++i){
+		_notes.pop_back();
+	}
     std::vector<EzNote*> newNotes;
     //begin right after the sol key
     float x = SCORE_INNERLINE*5;

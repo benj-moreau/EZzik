@@ -9,21 +9,23 @@ EzNote::EzNote(std::string note,NoteAlteration alteration, int x, int y, QGraphi
 		alter = new QGraphicsTextItem();
 		alter->setTransform(QTransform::fromTranslate(x-14,y-8));
         alter->setPlainText("b");
+		parent->addItem(alter);
     }else if(alteration == diese){
 		alter = new QGraphicsTextItem();
 		alter->setTransform(QTransform::fromTranslate(x-14,y-8));
         alter->setPlainText("#");
+		parent->addItem(alter);
     }else{
 		alter = NULL;
 	}
-    parent->addItem(alter);
+
     //under and upper onscore notes
     if((note.substr(0,3)=="DO1") ||  (note.substr(0,3)=="LA2")){
 		line = new QGraphicsLineItem(x-(TONE_WIDTH/2),y+(TONE_HEIGHT/2),x+(TONE_WIDTH)+(TONE_WIDTH/2),y+(TONE_HEIGHT/2));
+		parent->addItem(line);
     }else{
 		line = NULL;
 	}
- 	parent->addItem(line);
 }
 EzNote::~EzNote(){
 	delete alter;
@@ -33,7 +35,9 @@ EzNote::~EzNote(){
 std::string EzNote::getNote(){ return _note; }
 QGraphicsTextItem* EzNote::getAlter(){ return alter; }
 QPen EzNote::getPen(){ return QPen(); }
-QPoint EzNote::getPos(){ return pos().toPoint(); }
+QPoint EzNote::getPos(){ 
+	return QPoint(rect().x(),0); 
+}
 
 void EzNote::setState(NoteState state){
     _state = state;
@@ -43,3 +47,5 @@ void EzNote::setState(NoteState state){
         this->setBrush(QBrush(QColor(119, 212, 27)));
     }
 }
+
+NoteState EzNote::getState(){ return _state; }

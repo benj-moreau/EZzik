@@ -12,6 +12,9 @@
 #include <string>
 
 #include "EZnote.hpp"
+#include "EZnotenames.hpp"
+
+class EzNoteNames;
 
 class EzTextNote : public QGraphicsTextItem{
 	public:	
@@ -22,11 +25,14 @@ class EzTextNote : public QGraphicsTextItem{
 		void setWrong();
 		void setRight();
 		void updateNote(std::string key);
-
+		bool checkState();
+		NoteState getState();
 	private:
 		EzNote* realNote;
+		std::string myNote;
 		QGraphicsTextItem *alter;
-		
+		NoteState noteState;
+		void transformB(std::string & dNote);
 };
 
 #endif
