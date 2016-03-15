@@ -13,48 +13,44 @@ EzTextNote::~EzTextNote(){
 	delete alter;
 }
 
-void EzTextNote::updateNote(std::string key){
+void EzTextNote::updateNote(std::string key, EzNoteNames* parent){
 	myNote = key;
-	std::string alteration;
-	if(key.length() >= 4){
-		if(realNote->getNote().length() >= 4){
-			if (realNote->getNote().substr(3,4) == "b"){
-				transformB(myNote);
-			}
-		}
-		if(realNote->getNote().length() >= 5){
-			if (realNote->getNote().substr(4,5) == "b"){
-				transformB(myNote);
-			}
-		}
-	}
-	setPlainText(QString::fromStdString(key.substr(0,2)));
-	if(myNote.length() >= 5){
-		alteration = myNote.substr(4,5);
-	}else if(myNote.length() >= 5){
-		alteration = myNote.substr(3,4);
-	}else{
-		alteration = "";
-	}
-	
-	if(alteration.length() > 0){
-		alter = new QGraphicsTextItem();
-		alter->setTransform(QTransform::fromTranslate(pos().x()-14,pos().y()-8));
-        alter->setPlainText(QString::fromStdString(alteration));
-		dynamic_cast<EzNoteNames*>(parent())->addItem(alter);
-    }else{
+
+	if(alter != NULL){
+		parent->removeItem(alter);
+		delete alter;
 		alter = NULL;
+	}
+
+	if((realNote->isBemol()) && (key[key.length()-1] == '#')){
+		transformB(myNote);
+	}
+
+	if(myNote.substr(0,2) == "SO"){
+		setPlainText(QString("SOL"));
+	}else{
+		setPlainText(QString::fromStdString(myNote.substr(0,2)));
+	}
+	if((myNote[myNote.length()-1] == 'B') || (myNote[myNote.length()-1] == '#') ){
+		alter = new QGraphicsTextItem();
+		alter->setTransform(QTransform::fromTranslate(pos().x()-10,pos().y()+5));
+        alter->setPlainText(QString((myNote[myNote.length()-1] == 'B')?"b":"#"));
+		if(noteState == wrong)
+				alter->setDefaultTextColor(QColor(212, 27, 27));
+		if(noteState == correct)
+				alter->setDefaultTextColor(QColor(119, 212, 27));
+		parent->addItem(alter);
 	}
 }
 
 void EzTextNote::transformB(std::string & dNote){
-	std::string realNote = dNote.substr(0,2);
-	if(realNote == "DO"){dNote = "RE" + dNote.substr(2,3) + "b";}
-	else if(realNote == "RE"){dNote = "MI" + dNote.substr(2,3) + "b";}
-	else if(realNote == "MI"){dNote = "FA" + dNote.substr(2,3) + "b";}
-	else if(realNote == "FA"){dNote = "SOL" + dNote.substr(2,3) + "b";}
-	else if(realNote == "SO"){dNote = "LA" + dNote.substr(3,4) + "b";}
-	else if(realNote == "LA"){dNote = "SI" + dNote.substr(2,3) + "b";}
+	std::string noteStart = dNote.substr(0,2);
+	if(noteStart == "DO"){dNote = "RE" + dNote.substr(2,1) + "B";}
+	else if(noteStart == "RE"){dNote = "MI" + dNote.substr(2,1) + "B";}
+	else if(noteStart == "MI"){dNote = "FA" + dNote.substr(2,1) + "B";}
+	else if(noteStart == "FA"){dNote = "SOL" + dNote.substr(2,1) + "B";}
+	else if(noteStart == "SO"){dNote = "LA" + dNote.substr(3,1) + "B";}
+	else if(noteStart == "LA"){dNote = "SI" + dNote.substr(2,1) + "B";}
 }
 
 
@@ -90,4 +86,12 @@ void EzTextNote::setRight(){
 	if(alter != NULL){
 		alter->setDefaultTextColor(QColor(119, 212, 27));
 	}
+}
+
+std::string EzTextNote::getMyNote(){
+	return myNote;
+}
+
+std::string EzTextNote::getRealNote(){
+	return realNote->getNote();
 }

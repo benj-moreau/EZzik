@@ -27,7 +27,7 @@ class EzNote : public QGraphicsEllipseItem{
 		QPen getPen();
 		QPoint getPos();
         void setState(NoteState);
-
+		bool isBemol();
 	private:
         std::string _note;
         NoteState _state;

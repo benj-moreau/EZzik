@@ -49,3 +49,8 @@ void EzNote::setState(NoteState state){
 }
 
 NoteState EzNote::getState(){ return _state; }
+
+bool EzNote::isBemol(){
+	int noteSize = _note.length();
+	return (noteSize > 0)?(_note[_note.length() -1] == 'B'):false;
+}

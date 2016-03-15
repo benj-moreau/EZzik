@@ -25,6 +25,7 @@ void EzNoteNames::recieveTextNotes(std::vector<EzNote*> realNotes){
 	init();
 
 	for(int i = 0; i < notesSize; ++i){
+		removeItem(notes[i]);
 		delete notes[i];
 	}
 	for(int i = 0; i < notesSize; ++i){
@@ -41,10 +42,11 @@ void EzNoteNames::recievePianoKey(std::string key){
 	int notesSize = notes.size();
 	if(!over){
 		if(notesSize > 0){
-			notes[currentNoteIndex]->updateNote(key);
+			notes[currentNoteIndex]->updateNote(key,this);
 			currentNoteIndex = isCorrectedOnce?getNextWrong():currentNoteIndex+1;
 			if(currentNoteIndex >= notesSize){
 				correct();
+				isCorrectedOnce = true;
 				if(nbRight >= notesSize){
 					over = true;
 				}else{
@@ -59,15 +61,16 @@ void EzNoteNames::correct(){
 	int notesSize = notes.size();
 	int currentNoteIndex = 0;
 	while(currentNoteIndex < notesSize){
-		nbRight = notes[currentNoteIndex]->checkState()?nbRight+1:nbRight;
+		if(notes[currentNoteIndex]->getState() == wrong || notes[currentNoteIndex]->getState() == neutral)
+			nbRight = notes[currentNoteIndex]->checkState()?nbRight+1:nbRight;
 		++currentNoteIndex;
 	}
 }
 
 int EzNoteNames::getNextWrong(){
 	int notesSize = notes.size();
-	int next = (currentNoteIndex >= notesSize)?0:currentNoteIndex;
-	while(next < notesSize && notes[next]->getState() != wrong){
+	int next = (currentNoteIndex >= notesSize)?0:currentNoteIndex+1;
+	while(next < notesSize && (notes[next]->getState() != wrong)){
 		++next;
 	}
 	return next;

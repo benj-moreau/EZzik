@@ -24,9 +24,11 @@ class EzTextNote : public QGraphicsTextItem{
 		void setNeutral();
 		void setWrong();
 		void setRight();
-		void updateNote(std::string key);
+		void updateNote(std::string key, EzNoteNames*);
 		bool checkState();
 		NoteState getState();
+		std::string getMyNote();
+		std::string getRealNote();
 	private:
 		EzNote* realNote;
 		std::string myNote;
