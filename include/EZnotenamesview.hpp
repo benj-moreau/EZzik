@@ -1,6 +1,8 @@
 #ifndef EZNOTENAMESVIEW_HPP
 #define EZNOTENAMESVIEW_HPP
 
+#include "EZscore.hpp"
+
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QGraphicsItem>

@@ -1,4 +1,5 @@
 #include "../include/EZnotenames.hpp"
+
 EzNoteNames::EzNoteNames():QGraphicsScene(){
 	init();
 }
@@ -33,7 +34,8 @@ void EzNoteNames::recieveTextNotes(std::vector<EzNote*> realNotes){
 	}
 	notesSize = realNotes.size();
 	for(int i = 0; i < notesSize; ++i){
-		notes.push_back(new EzTextNote(realNotes[i],this));
+        EzTextNote *note = new EzTextNote(realNotes[i],this);
+        notes.push_back(note);
 	}
 	
 }

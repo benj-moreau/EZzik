@@ -3,6 +3,9 @@
 *.lo
 *.o
 *.obj
+moc/*
+*.pro
+moc_*
 
 # Precompiled Headers
 *.gch
@@ -26,3 +29,5 @@
 *.exe
 *.out
 *.app
+EZzik
+Makefile

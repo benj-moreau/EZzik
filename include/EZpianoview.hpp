@@ -18,6 +18,8 @@ class EzPianoView : public QGraphicsView{
 	public : EzPianoView(QGraphicsScene*);
 	 		~EzPianoView();
 			void mousePressEvent(QMouseEvent * mouseEvent);
+            void resizeEvent(QResizeEvent *event);
+
 	private:
 };
 

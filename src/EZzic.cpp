@@ -37,6 +37,7 @@ int main(int argc, char* argv[])
     EzScoreView *scoreView = new EzScoreView(scoreScene);
 	EzNoteNames *enm = new EzNoteNames();
     EzNoteNamesView *enmv = new EzNoteNamesView(enm);
+    enmv->setStyleSheet("background: transparent; border-style: none;");
 
 	EzSelection *ezselect = new EzSelection();
 	EzFileDialog *ezfd = new EzFileDialog();
@@ -63,9 +64,9 @@ int main(int argc, char* argv[])
 	scoreChooseLayout->addWidget(ezfd);
 	
 	mainLayout->addLayout(scoreChooseLayout);
-    mainLayout->addWidget(scoreView);
-	mainLayout->addWidget(enmv);
-    mainLayout->addWidget(pianoView);
+    mainLayout->addWidget(scoreView,1);
+    mainLayout->addWidget(enmv);
+    mainLayout->addWidget(pianoView,1);
     QWidget *w = new QWidget();
     
     w->setLayout(mainLayout);
@@ -74,7 +75,7 @@ int main(int argc, char* argv[])
     w->setWindowIcon(QIcon("res/icone.png"));
 
     w->setMinimumWidth(430);
-    w->setMinimumHeight(310);
+    w->setMinimumHeight(350);
     
     w->show();
     

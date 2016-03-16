@@ -5,19 +5,21 @@ EzScore::EzScore(){
     for(int i=1;i<=5;++i){
         this->addItem(new QGraphicsLineItem(0,SCORE_INNERLINE*i,SCORE_LENGTH,SCORE_INNERLINE*i));
     }
-
 	//scaled set the proportion of the key in comparaison of score innerline
 	QGraphicsPixmapItem *solKey = this->addPixmap((QPixmap("res/cleSol.png").scaled(SCORE_INNERLINE*4,SCORE_INNERLINE*8,Qt::KeepAspectRatio,Qt::SmoothTransformation)));
 	//sol key is up of 1 innerline
-	solKey->setOffset(0,-SCORE_INNERLINE);
-	line = new QGraphicsLineItem();
+    solKey->setOffset(0,-SCORE_INNERLINE);
 
-	QPen pen;
-	QVector<qreal> dashes;
-	dashes << 40 << 70;
-	pen.setDashPattern(dashes);
-	line->setPen(pen);
-	addItem(line);
+    QPen pen;
+    pen.setWidth(3);
+    pen.setCapStyle(Qt::RoundCap);
+    lineSup = new QGraphicsLineItem();
+    lineSup->setPen(pen);
+    lineInf = new QGraphicsLineItem();
+    lineInf->setPen(pen);
+    addItem(lineSup);
+    addItem(lineInf);
+
 }
 EzScore::~EzScore(){}
 
@@ -72,7 +74,8 @@ void EzScore::drawBar(int ind){
 	int sizeN = _notes.size();
 	if(ind < sizeN){
 		QPointF pos = _notes[ind]->getPos();
-		line->setLine(pos.x()+5,-50,pos.x()+5,150);
+        lineSup->setLine(pos.x()+5,-SCORE_INNERLINE*2,pos.x()+5,-SCORE_INNERLINE);
+        lineInf->setLine(pos.x()+5,SCORE_INNERLINE*7,pos.x()+5,SCORE_INNERLINE*8);
 	}
 }
 
