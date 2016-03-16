@@ -5,6 +5,7 @@
 *.obj
 moc/*
 *.pro
+moc_*
 
 # Precompiled Headers
 *.gch
