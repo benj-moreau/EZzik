@@ -6,7 +6,7 @@ EzScore::EzScore(){
         this->addItem(new QGraphicsLineItem(0,SCORE_INNERLINE*i,SCORE_LENGTH,SCORE_INNERLINE*i));
     }
    //scaled set the proportion of the key in comparaison of score innerline
-   QGraphicsPixmapItem *solKey = this->addPixmap((QPixmap("res/cleSol.png").scaled(SCORE_INNERLINE*4,SCORE_INNERLINE*8,Qt::KeepAspectRatio,Qt::SmoothTransformation)));
+   QGraphicsPixmapItem *solKey = this->addPixmap((QPixmap("res/cleSol.png").scaled(SCORE_INNERLINE*4,SCORE_INNERLINE*8,)));
    //sol key is up of 1 innerline
    solKey->setOffset(0,-SCORE_INNERLINE);
 }
