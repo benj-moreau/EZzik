@@ -22,22 +22,26 @@ static const uint qt_meta_data_EzNoteNames[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: signature, parameters, type, tag, flags
+      13,   12,   12,   12, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      13,   12,   12,   12, 0x0a,
-      52,   12,   12,   12, 0x0a,
+      29,   12,   12,   12, 0x0a,
+      68,   12,   12,   12, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_EzNoteNames[] = {
-    "EzNoteNames\0\0recieveTextNotes(std::vector<EzNote*>)\0"
+    "EzNoteNames\0\0sendNewInd(int)\0"
+    "recieveTextNotes(std::vector<EzNote*>)\0"
     "recievePianoKey(std::string)\0"
 };
 
@@ -47,8 +51,9 @@ void EzNoteNames::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         Q_ASSERT(staticMetaObject.cast(_o));
         EzNoteNames *_t = static_cast<EzNoteNames *>(_o);
         switch (_id) {
-        case 0: _t->recieveTextNotes((*reinterpret_cast< std::vector<EzNote*>(*)>(_a[1]))); break;
-        case 1: _t->recievePianoKey((*reinterpret_cast< std::string(*)>(_a[1]))); break;
+        case 0: _t->sendNewInd((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 1: _t->recieveTextNotes((*reinterpret_cast< std::vector<EzNote*>(*)>(_a[1]))); break;
+        case 2: _t->recievePianoKey((*reinterpret_cast< std::string(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -86,10 +91,17 @@ int EzNoteNames::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
+}
+
+// SIGNAL 0
+void EzNoteNames::sendNewInd(int _t1)
+{
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE

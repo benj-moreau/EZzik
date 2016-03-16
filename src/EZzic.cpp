@@ -53,6 +53,8 @@ int main(int argc, char* argv[])
 	QObject::connect(ezselect, SIGNAL(sendNewValidInd(int)), er, SLOT(newValidIndex(int)));
 	QObject::connect(er, SIGNAL(sendReset(int)), ezselect, SLOT(selectedScore(int)));
 
+	QObject::connect(enm, SIGNAL(sendNewInd(int)), scoreScene, SLOT(drawBar(int)));
+
 	QVBoxLayout *mainLayout = new QVBoxLayout();
 	QHBoxLayout *scoreChooseLayout = new QHBoxLayout();
 	

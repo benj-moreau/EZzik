@@ -3,6 +3,7 @@
 
 #include <QGraphicsScene>
 #include <QGraphicsItem>
+#include <QMessageBox>
 #include <QString>
 #include <QPen>
 #include <QList>
@@ -29,12 +30,14 @@ class EzScore : public QGraphicsScene{
 	
 	public slots:
 		void recieveNotes(std::vector<std::string>);
-	
+		void drawBar(int);
+
 	signals:
 		void sendTextNotes(std::vector<EzNote*>);
 
 	private:
         std::vector<EzNote*> _notes;
+		QGraphicsLineItem* line;
 		int currentNoteIndex;
 };
 

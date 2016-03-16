@@ -22,7 +22,7 @@ static const uint qt_meta_data_EzScore[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -34,6 +34,7 @@ static const uint qt_meta_data_EzScore[] = {
 
  // slots: signature, parameters, type, tag, flags
       45,    8,    8,    8, 0x0a,
+      84,    8,    8,    8, 0x0a,
 
        0        // eod
 };
@@ -41,6 +42,7 @@ static const uint qt_meta_data_EzScore[] = {
 static const char qt_meta_stringdata_EzScore[] = {
     "EzScore\0\0sendTextNotes(std::vector<EzNote*>)\0"
     "recieveNotes(std::vector<std::string>)\0"
+    "drawBar(int)\0"
 };
 
 void EzScore::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -51,6 +53,7 @@ void EzScore::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         switch (_id) {
         case 0: _t->sendTextNotes((*reinterpret_cast< std::vector<EzNote*>(*)>(_a[1]))); break;
         case 1: _t->recieveNotes((*reinterpret_cast< std::vector<std::string>(*)>(_a[1]))); break;
+        case 2: _t->drawBar((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -88,9 +91,9 @@ int EzScore::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }

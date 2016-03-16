@@ -30,6 +30,9 @@ class EzNoteNames : public QGraphicsScene{
 		void recieveTextNotes(std::vector<EzNote*>);
 		void recievePianoKey(std::string);
 
+	signals:
+		void sendNewInd(int);
+
 	private:
         std::vector<EzTextNote*> notes;
 		int currentNoteIndex;

@@ -54,6 +54,7 @@ void EzNoteNames::recievePianoKey(std::string key){
 				}
 			}
 		}
+		emit(sendNewInd(currentNoteIndex));
 	}
 }
 

@@ -5,10 +5,18 @@ EzScore::EzScore(){
     for(int i=1;i<=5;++i){
         this->addItem(new QGraphicsLineItem(0,SCORE_INNERLINE*i,SCORE_LENGTH,SCORE_INNERLINE*i));
     }
-   //scaled set the proportion of the key in comparaison of score innerline
-   QGraphicsPixmapItem *solKey = this->addPixmap((QPixmap("res/cleSol.png").scaled(SCORE_INNERLINE*4,SCORE_INNERLINE*8)));
-   //sol key is up of 1 innerline
-   solKey->setOffset(0,-SCORE_INNERLINE);
+	//scaled set the proportion of the key in comparaison of score innerline
+	QGraphicsPixmapItem *solKey = this->addPixmap((QPixmap("res/cleSol.png").scaled(SCORE_INNERLINE*4,SCORE_INNERLINE*8)));
+	//sol key is up of 1 innerline
+	solKey->setOffset(0,-SCORE_INNERLINE);
+	line = new QGraphicsLineItem();
+
+	QPen pen;
+	QVector<qreal> dashes;
+	dashes << 40 << 70;
+	pen.setDashPattern(dashes);
+	line->setPen(pen);
+	addItem(line);
 }
 EzScore::~EzScore(){}
 
@@ -50,11 +58,21 @@ void EzScore::setNotes(std::vector<std::string> notes){
         x += space;
     }
     _notes = newNotes;
+	if(_notes.size() > 0)
+		drawBar(0);
 	emit sendTextNotes(_notes);
 }
 
 EzNote* EzScore::getNote(int i){
     return _notes[i];
+}
+
+void EzScore::drawBar(int ind){
+	int sizeN = _notes.size();
+	if(ind < sizeN){
+		QPointF pos = _notes[ind]->getPos();
+		line->setLine(pos.x()+5,-50,pos.x()+5,150);
+	}
 }
 
 void EzScore::recieveNotes(std::vector<std::string> notes){ setNotes(notes); }
