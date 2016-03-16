@@ -21,7 +21,8 @@ HEADERS += include/EZfiledialog.hpp \
            include/EZselection.hpp \
 		   include/EZtextnote.hpp \
            include/EZnotenames.hpp \
-           include/EZnotenamesview.hpp
+           include/EZnotenamesview.hpp \
+		   include/EZreset.hpp
 SOURCES += src/EZfiledialog.cpp \
            src/EZkey.cpp \
            src/EZnote.cpp \
@@ -33,4 +34,5 @@ SOURCES += src/EZfiledialog.cpp \
            src/EZzic.cpp \
 		   src/EZtextnote.cpp \
            src/EZnotenames.cpp \
-           src/EZnotenamesview.cpp
+           src/EZnotenamesview.cpp \
+		   src/EZreset.cpp

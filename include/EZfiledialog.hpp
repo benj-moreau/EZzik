@@ -23,8 +23,6 @@ class EzFileDialog : public QPushButton{
 
 	signals:
 		void sendDir(QString);
-	
-	
 };
 
 #endif

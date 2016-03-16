@@ -23,7 +23,7 @@
 #include "../include/EZtextnote.hpp"
 #include "../include/EZnotenames.hpp"
 #include "../include/EZnotenamesview.hpp"
-
+#include "../include/EZreset.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -35,12 +35,13 @@ int main(int argc, char* argv[])
 
     EzScore *scoreScene = new EzScore();
     EzScoreView *scoreView = new EzScoreView(scoreScene);
-
 	EzNoteNames *enm = new EzNoteNames();
     EzNoteNamesView *enmv = new EzNoteNamesView(enm);
 
 	EzSelection *ezselect = new EzSelection();
 	EzFileDialog *ezfd = new EzFileDialog();
+
+	EzReset *er = new EzReset();
 
 	QObject::connect(ezfd,SIGNAL(sendDir(QString)),ezselect,SLOT(recieveDir(QString)));
 	QObject::connect(ezselect,SIGNAL(sendScore(std::vector<std::string>)),scoreScene,SLOT(recieveNotes(std::vector<std::string>)));
@@ -48,10 +49,17 @@ int main(int argc, char* argv[])
 	QObject::connect(scoreScene, SIGNAL(sendTextNotes(std::vector<EzNote*>)), enm, SLOT(recieveTextNotes(std::vector<EzNote*>)));
 	QObject::connect(Pianoscene, SIGNAL(sendKey(std::string)), enm, SLOT(recievePianoKey(std::string)));
 
+	QObject::connect(ezselect, SIGNAL(sendNewDir()), er, SLOT(newDir()));
+	QObject::connect(ezselect, SIGNAL(sendNewValidInd(int)), er, SLOT(newValidIndex(int)));
+	QObject::connect(er, SIGNAL(sendReset(int)), ezselect, SLOT(selectedScore(int)));
+
 	QVBoxLayout *mainLayout = new QVBoxLayout();
 	QHBoxLayout *scoreChooseLayout = new QHBoxLayout();
+	
+	scoreChooseLayout->addWidget(er);
 	scoreChooseLayout->addWidget(ezselect);
 	scoreChooseLayout->addWidget(ezfd);
+	
 	mainLayout->addLayout(scoreChooseLayout);
     mainLayout->addWidget(scoreView);
 	mainLayout->addWidget(enmv);

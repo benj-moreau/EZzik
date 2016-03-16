@@ -2,6 +2,8 @@
 
 EzSelection::EzSelection():QComboBox(){
 	QObject::connect(this,SIGNAL(currentIndexChanged(int)),this,SLOT(selectedScore(int)));
+	setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Minimum);
+	setMinimumHeight(50);
 }
 EzSelection::~EzSelection(){}
 
@@ -42,6 +44,7 @@ int EzSelection::updateList(){
 }
 
 void EzSelection::recieveDir(QString dirPath){
+	emit(sendNewDir());
 	setDirPath(dirPath.toUtf8().constData());
 }
 
@@ -53,7 +56,6 @@ void EzSelection::selectedScore(int ind){
 	std::string line;
 	std::vector<std::string> notes;
 	if((comboText = itemText(ind)) != NULL){
-	
 		score = dirPath + "/" + comboText.toUtf8().constData() + ".score";
 		std::ifstream myfile(score.c_str());
 
@@ -65,9 +67,10 @@ void EzSelection::selectedScore(int ind){
 				notes.push_back(noteToken);
 			}
 			myfile.close();
-			if(notes.size() > 0)
+			if(notes.size() > 0){
 				emit(sendScore(notes)); // send notes read from text file to the EZscore
-
+				emit(sendNewValidInd(ind));
+			}
 		}else QMessageBox::information(new QWidget(),tr("File Error"),tr("unable to open the file")); 
 	}
 }

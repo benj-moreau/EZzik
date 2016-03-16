@@ -12,6 +12,7 @@ class EzScoreView : public QGraphicsView{
     public :
         EzScoreView(QGraphicsScene*);
         ~EzScoreView();
+		void resizeEvent(QResizeEvent *);
 	private:
 };
 

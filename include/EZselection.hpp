@@ -25,6 +25,8 @@ class EzSelection : public QComboBox{
 
 	signals:
 		void sendScore(std::vector<std::string>);
+		void sendNewDir();
+		void sendNewValidInd(int);
 
 	private:
 		std::string dirPath;
