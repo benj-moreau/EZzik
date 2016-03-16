@@ -37,7 +37,8 @@ class EzScore : public QGraphicsScene{
 
 	private:
         std::vector<EzNote*> _notes;
-		QGraphicsLineItem* line;
+        QGraphicsLineItem* lineInf;
+        QGraphicsLineItem* lineSup;
 		int currentNoteIndex;
 };
 
