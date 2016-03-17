@@ -28,13 +28,38 @@ EzPiano::EzPiano(){
 	board.push_back(new EzKey("black","FA2#",215,0,this));
 	board.push_back(new EzKey("black","SOL2#",235,0,this));
 	board.push_back(new EzKey("black","LA2#",255,0,this));
+
+	mediaObject = new Phonon::MediaObject();
+	mediaSource = new Phonon::MediaSource();
+    videoWidget = new Phonon::VideoWidget();
+    Phonon::createPath(mediaObject, videoWidget);
+    audioOutput = new Phonon::AudioOutput(Phonon::VideoCategory);
+    Phonon::createPath(mediaObject, audioOutput);
+	mediaSource = new Phonon::MediaSource();
+	mediaObject->setCurrentSource(*mediaSource);
 }
-EzPiano::~EzPiano(){}
+EzPiano::~EzPiano(){
+	delete mediaObject;
+	delete mediaSource;
+	delete videoWidget;
+	delete audioOutput;
+	delete mediaSource;
+}
 
 void EzPiano::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent){
 	int xSPos = mouseEvent->lastScenePos().x(), ySPos = mouseEvent->lastScenePos().y();
-	if(itemAt(xSPos,ySPos) != NULL){
-		emit sendKey(dynamic_cast<EzKey*>(itemAt(xSPos,ySPos))->getNote());
+	QGraphicsItem *clickedItem = itemAt(xSPos,ySPos);
+	EzKey *clickedKey;
+	if(clickedItem != NULL){
+		clickedItem = itemAt(xSPos,ySPos);
+		clickedKey = dynamic_cast<EzKey*>(itemAt(xSPos,ySPos));
+	
+		delete mediaSource;
+		mediaSource = new Phonon::MediaSource(QString("sounds/") + QString::fromStdString(clickedKey->getNote()) + QString(".wav"));
+		mediaObject->setCurrentSource(*mediaSource);
+		mediaObject->play();
+
+		emit sendKey(clickedKey->getNote());
 	}
 }
 
