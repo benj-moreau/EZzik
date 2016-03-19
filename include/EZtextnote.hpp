@@ -3,6 +3,7 @@
 
 #include <QGraphicsItem>
 #include <QGraphicsTextItem>
+#include <QGraphicsSimpleTextItem>
 #include <QGraphicsScene>
 #include <QString>
 #include <QPen>
@@ -16,7 +17,7 @@
 
 class EzNoteNames;
 
-class EzTextNote : public QGraphicsTextItem{
+class EzTextNote : public QGraphicsSimpleTextItem{
 	public:	
 		EzTextNote(EzNote*, QGraphicsScene*);
 		~EzTextNote();
@@ -32,7 +33,7 @@ class EzTextNote : public QGraphicsTextItem{
 	private:
 		EzNote* realNote;
 		std::string myNote;
-		QGraphicsTextItem *alter;
+		QGraphicsSimpleTextItem *alter;
 		NoteState noteState;
 		void transformB(std::string & dNote);
 };

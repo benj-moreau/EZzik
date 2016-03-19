@@ -68,6 +68,7 @@ int main(int argc, char* argv[])
     mainLayout->addWidget(scoreView,1);
     mainLayout->addWidget(noteNamesView);
     mainLayout->addWidget(pianoView,1);
+
     QWidget *w = new QWidget();
     
     w->setLayout(mainLayout);

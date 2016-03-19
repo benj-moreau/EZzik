@@ -3,6 +3,9 @@
 
 #include <QGraphicsScene>
 #include <QGraphicsItem>
+#include <QGraphicsLineItem>
+#include <QMessageBox>
+#include <QWidget>
 #include <QString>
 #include <QPen>
 #include <QList>
@@ -11,6 +14,8 @@
 #include <string>
 #include <vector>
 
+#include <cstdio>
+#include <ctime>
 #include "EZtextnote.hpp"
 #include "EZnote.hpp"
 
@@ -38,10 +43,15 @@ class EzNoteNames : public QGraphicsScene{
 		int currentNoteIndex;
 		int nbRight;
 		bool over;
+		bool firstNote;
 		bool isCorrectedOnce;
-		
+		std::clock_t start;
+		int nbErrors;
+		QGraphicsLineItem * space;
+
 		void correct();
 		int getNextWrong();
+		
 };
 
 #endif

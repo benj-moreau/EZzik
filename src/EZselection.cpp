@@ -4,6 +4,7 @@ EzSelection::EzSelection():QComboBox(){
 	QObject::connect(this,SIGNAL(currentIndexChanged(int)),this,SLOT(selectedScore(int)));
 	setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Minimum);
 	setMinimumHeight(50);
+	setFont(QFont("Helvetica [Cronyx]", 12));
 }
 EzSelection::~EzSelection(){}
 

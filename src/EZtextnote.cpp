@@ -1,12 +1,14 @@
 #include "../include/EZtextnote.hpp"
 
-EzTextNote::EzTextNote(EzNote* en, QGraphicsScene* parent):QGraphicsTextItem(QString("")){
-	setFont(QFont("Helvetica [Cronyx]", 12));
+EzTextNote::EzTextNote(EzNote* en, QGraphicsScene* parent):QGraphicsSimpleTextItem(QString("")){
+	setFont(QFont("Helvetica [Cronyx]", 16,75));
 	realNote = en;
 	myNote = "";
 	setPos(realNote->getPos());
 	alter = NULL;
 	noteState = neutral;
+	setPen(QPen(QBrush(QColor(0, 0, 0)), 1));
+	setBrush(QBrush(QColor(0, 0, 0)));
 	parent->addItem(this);
 }
 
@@ -16,6 +18,9 @@ EzTextNote::~EzTextNote(){
 
 void EzTextNote::updateNote(std::string key, EzNoteNames* parent){
 	myNote = key;
+
+	setPen(QPen(QBrush(QColor(0, 0, 0)), 1));
+	setBrush(QBrush(QColor(0, 0, 0)));
 
 	if(alter != NULL){
 		parent->removeItem(alter);
@@ -28,18 +33,17 @@ void EzTextNote::updateNote(std::string key, EzNoteNames* parent){
 	}
 
 	if(myNote.substr(0,2) == "SO"){
-		setPlainText(QString("SOL"));
+		setText(QString("SOL"));
 	}else{
-		setPlainText(QString::fromStdString(myNote.substr(0,2)));
+		setText(QString::fromStdString(myNote.substr(0,2)));
 	}
 	if((myNote[myNote.length()-1] == 'B') || (myNote[myNote.length()-1] == '#') ){
-		alter = new QGraphicsTextItem();
-		alter->setTransform(QTransform::fromTranslate(pos().x()-10,pos().y()+5));
-        alter->setPlainText(QString((myNote[myNote.length()-1] == 'B')?"b":"#"));
-		if(noteState == wrong)
-				alter->setDefaultTextColor(QColor(212, 27, 27));
-		if(noteState == correct)
-				alter->setDefaultTextColor(QColor(119, 212, 27));
+		alter = new QGraphicsSimpleTextItem();
+		alter->setFont(QFont("Helvetica [Cronyx]", 12,75));
+		alter->setTransform(QTransform::fromTranslate(pos().x()-15,pos().y()+10));
+        alter->setText(QString((myNote[myNote.length()-1] == 'B')?"b":"#"));
+			alter->setPen(QPen(QBrush(QColor(0, 0, 0)), 1));
+			alter->setBrush(QBrush(QColor(0, 0, 0)));
 		parent->addItem(alter);
 	}
 }
@@ -72,20 +76,20 @@ bool EzTextNote::checkState(){
 
 void EzTextNote::setNeutral(){
 	noteState = neutral;
-	setDefaultTextColor(QColor(0, 0, 0));
+	setBrush(QBrush(QColor(0, 0, 0)));
 }
 void EzTextNote::setWrong(){
 	noteState = wrong;
-	setDefaultTextColor(QColor(212, 27, 27));
+	setBrush(QBrush(QColor(212, 27, 27)));
 	if(alter != NULL){
-		alter->setDefaultTextColor(QColor(212, 27, 27));
+		alter->setBrush(QBrush(QColor(212, 27, 27)));
 	}
 }
 void EzTextNote::setRight(){
 	noteState = correct;
-	setDefaultTextColor(QColor(119, 212, 27));
+	setBrush(QColor(119, 212, 27));
 	if(alter != NULL){
-		alter->setDefaultTextColor(QColor(119, 212, 27));
+		alter->setBrush(QColor(119, 212, 27));
 	}
 }
 

@@ -4,6 +4,7 @@
 #include <QGraphicsItem>
 #include <QMessageBox>
 #include <QGraphicsScene>
+#include <QGraphicsSceneMouseEvent>
 #include <QString>
 #include <QPen>
 #include <QBrush>
@@ -22,10 +23,12 @@ class EzKey : public QGraphicsRectItem{
 			
 			std::string getNote();
 			void setNote(std::string);
-			void testPass();
+			std::string getColor();
 
 	private:
 		std::string _note;
+		std::string _color;
+		
 };
 
 #endif

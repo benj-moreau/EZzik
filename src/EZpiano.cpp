@@ -52,6 +52,7 @@ void EzPiano::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent){
 	EzKey *clickedKey;
 	if(clickedItem != NULL){
 		clickedKey = dynamic_cast<EzKey*>(clickedItem);
+		clickedKey->setBrush( QBrush( QColor(120, 120, 120),Qt::SolidPattern ) );
 		/*
 		delete mediaSource;
 		mediaSource = new Phonon::MediaSource(QString("sounds/") + QString::fromStdString(clickedKey->getNote()) + QString(".wav"));
@@ -60,5 +61,18 @@ void EzPiano::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent){
 
 		emit sendKey(clickedKey->getNote());
 	}
+	QGraphicsScene::mousePressEvent(mouseEvent);
 }
+
+void EzPiano::mouseReleaseEvent(QGraphicsSceneMouseEvent * mouseEvent){
+	int boardSize = board.size();
+	for(int i = 0; i < boardSize; ++i){
+		if(board[i]->getColor() == "white")
+			board[i]->setBrush(QBrush(QColor(240, 240, 240),Qt::SolidPattern));
+		else
+			board[i]->setBrush(QBrush(QColor(20, 20, 20),Qt::SolidPattern));
+	}
+	QGraphicsScene::mouseReleaseEvent(mouseEvent);
+}
+
 

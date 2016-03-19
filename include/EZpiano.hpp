@@ -22,7 +22,7 @@ class EzPiano : public QGraphicsScene{
 	public : EzPiano();
 	 		~EzPiano();
 			void mousePressEvent(QGraphicsSceneMouseEvent*);
-
+			void mouseReleaseEvent(QGraphicsSceneMouseEvent*);
 	signals:
 		void sendKey(std::string);
 

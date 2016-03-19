@@ -8,8 +8,12 @@ EzNoteNames::~EzNoteNames(){}
 void EzNoteNames::init(){
 	currentNoteIndex = 0;
 	nbRight = 0;
+	nbErrors = 0;
 	over = false;
+	firstNote = true;
 	isCorrectedOnce = false;
+	space = new QGraphicsLineItem(0,0,0,0);
+	addItem(space);
 }
 
 
@@ -37,11 +41,20 @@ void EzNoteNames::recieveTextNotes(std::vector<EzNote*> realNotes){
         EzTextNote *note = new EzTextNote(realNotes[i],this);
         notes.push_back(note);
 	}
-	
+	removeItem(space);
+	space->setPen(QPen(QBrush(QColor(0,0,0)),5));
+	//space = new QGraphicsLineItem(900/(notes.size()),0,950/(notes.size()),0);
+	addItem(space);
 }
 
 void EzNoteNames::recievePianoKey(std::string key){
 	int notesSize = notes.size();
+	double duration;
+
+	if(firstNote){
+		firstNote = false;
+		start = std::clock();
+	}
 	if(!over){
 		if(notesSize > 0){
 			notes[currentNoteIndex]->updateNote(key,this);
@@ -51,6 +64,12 @@ void EzNoteNames::recievePianoKey(std::string key){
 				isCorrectedOnce = true;
 				if(nbRight >= notesSize){
 					over = true;
+
+					duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC * 100;
+					QString result = QString("Vous avez mis ")  + QString::number(duration) + QString(" secondes à déchiffrer la partition\n");
+					result += QString("Vous avez fait ")  + QString::number(nbErrors) + QString(" erreurs sur ") + 
+					QString::number(nbErrors + notes.size()) + QString(" touches");
+					QMessageBox::information(new QWidget(), QString("Statistiques de la partition"), result);
 				}else{
 					currentNoteIndex = getNextWrong();
 				}
@@ -75,6 +94,9 @@ int EzNoteNames::getNextWrong(){
 	int next = (currentNoteIndex >= notesSize)?0:currentNoteIndex+1;
 	while(next < notesSize && (notes[next]->getState() != wrong)){
 		++next;
+	}
+	if(next < notesSize){
+		++ nbErrors;
 	}
 	return next;
 }
