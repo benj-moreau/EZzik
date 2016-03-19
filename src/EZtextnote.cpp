@@ -1,12 +1,13 @@
 #include "../include/EZtextnote.hpp"
 
-EzTextNote::EzTextNote(EzNote* en, QGraphicsScene* parent):QGraphicsTextItem(QString(""),0,parent){
+EzTextNote::EzTextNote(EzNote* en, QGraphicsScene* parent):QGraphicsTextItem(QString("")){
 	setFont(QFont("Helvetica [Cronyx]", 12));
 	realNote = en;
 	myNote = "";
 	setPos(realNote->getPos());
 	alter = NULL;
 	noteState = neutral;
+	parent->addItem(this);
 }
 
 EzTextNote::~EzTextNote(){

@@ -1,6 +1,6 @@
 #include "../include/EZkey.hpp"
 
-EzKey::EzKey(std::string color, std::string note, int x, int y, QGraphicsScene* parent):QGraphicsRectItem(QRectF(x, y, (color=="white")?WHITE_WIDTH:BLACK_WIDTH, (color=="white")?WHITE_HEIGHT:BLACK_HEIGHT), 0, parent){
+EzKey::EzKey(std::string color, std::string note, int x, int y, QGraphicsScene* parent):QGraphicsRectItem(QRectF(x, y, (color=="white")?WHITE_WIDTH:BLACK_WIDTH, (color=="white")?WHITE_HEIGHT:BLACK_HEIGHT)){
 	if(color == "white"){
 		setPen( QPen( QColor(60,60,60), 2, Qt::SolidLine, Qt::RoundCap, Qt::BevelJoin ) );
 		setBrush( QBrush( QColor(240, 240, 240) ) );
@@ -9,6 +9,7 @@ EzKey::EzKey(std::string color, std::string note, int x, int y, QGraphicsScene* 
 		setBrush( QBrush( QColor(20, 20, 20) ) );
 	}
 	_note = note;
+	parent->addItem(this);
 }
 EzKey::~EzKey(){}
 

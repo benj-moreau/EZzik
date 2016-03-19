@@ -1,6 +1,6 @@
 #include "../include/EZpiano.hpp"
 
-EzPiano::EzPiano(){
+EzPiano::EzPiano():QGraphicsScene(){
 	board.push_back(new EzKey("white","DO1",0,0,this));
 	board.push_back(new EzKey("white","RE1",20,0,this));
 	board.push_back(new EzKey("white","MI1",40,0,this));
@@ -29,35 +29,34 @@ EzPiano::EzPiano(){
 	board.push_back(new EzKey("black","SOL2#",235,0,this));
 	board.push_back(new EzKey("black","LA2#",255,0,this));
 
-	mediaObject = new Phonon::MediaObject();
+	/*mediaObject = new Phonon::MediaObject();
 	mediaSource = new Phonon::MediaSource();
     videoWidget = new Phonon::VideoWidget();
     Phonon::createPath(mediaObject, videoWidget);
     audioOutput = new Phonon::AudioOutput(Phonon::VideoCategory);
     Phonon::createPath(mediaObject, audioOutput);
 	mediaSource = new Phonon::MediaSource();
-	mediaObject->setCurrentSource(*mediaSource);
+	mediaObject->setCurrentSource(*mediaSource);*/
 }
 EzPiano::~EzPiano(){
-	delete mediaObject;
+	/*delete mediaObject;
 	delete mediaSource;
 	delete videoWidget;
 	delete audioOutput;
-	delete mediaSource;
+	delete mediaSource;*/
 }
 
 void EzPiano::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent){
 	int xSPos = mouseEvent->lastScenePos().x(), ySPos = mouseEvent->lastScenePos().y();
-	QGraphicsItem *clickedItem = itemAt(xSPos,ySPos);
+	QGraphicsItem *clickedItem = itemAt(QPoint(xSPos,ySPos), QTransform());
 	EzKey *clickedKey;
 	if(clickedItem != NULL){
-		clickedItem = itemAt(xSPos,ySPos);
-		clickedKey = dynamic_cast<EzKey*>(itemAt(xSPos,ySPos));
-	
+		clickedKey = dynamic_cast<EzKey*>(clickedItem);
+		/*
 		delete mediaSource;
 		mediaSource = new Phonon::MediaSource(QString("sounds/") + QString::fromStdString(clickedKey->getNote()) + QString(".wav"));
 		mediaObject->setCurrentSource(*mediaSource);
-		mediaObject->play();
+		mediaObject->play();*/
 
 		emit sendKey(clickedKey->getNote());
 	}

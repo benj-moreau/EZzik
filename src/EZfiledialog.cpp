@@ -6,13 +6,12 @@ EzFileDialog::EzFileDialog():QPushButton(){
 	QPixmap pixmap("icons/Folder_Up.png");
 	QIcon btnIcon(pixmap.scaled(60, 60, Qt::IgnoreAspectRatio, Qt::FastTransformation));
 	setIcon(btnIcon);
-
-	connect(this,SIGNAL(clicked()),this,SLOT(clickEvent()));
+	QObject::connect(this,SIGNAL(clicked()),this,SLOT(clickEvent()));
 }
 EzFileDialog::~EzFileDialog(){}
 
 void EzFileDialog::clickEvent(){
-	QString dir = QFileDialog::getExistingDirectory(new QWidget, tr("Open directory"), ".", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+	QString dir = QFileDialog::getExistingDirectory(this, tr("Open directory"), ".", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 	if(dir != NULL)	
 		emit sendDir(dir);
 }

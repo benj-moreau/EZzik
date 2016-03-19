@@ -1,6 +1,6 @@
 #include "../include/EZnote.hpp"
 
-EzNote::EzNote(std::string note,NoteAlteration alteration, int x, int y, QGraphicsScene* parent):QGraphicsEllipseItem(QRectF(x, y, TONE_WIDTH, TONE_HEIGHT), 0, parent){
+EzNote::EzNote(std::string note,NoteAlteration alteration, int x, int y, QGraphicsScene* parent):QGraphicsEllipseItem(QRectF(x, y, TONE_WIDTH, TONE_HEIGHT)){
      setPen( QPen( QColor(0,0,0,225), 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin ) );
 	_note = note;
     _state = neutral;
@@ -26,6 +26,7 @@ EzNote::EzNote(std::string note,NoteAlteration alteration, int x, int y, QGraphi
     }else{
 		line = NULL;
 	}
+	parent->addItem(this);
 }
 EzNote::~EzNote(){
 	delete alter;

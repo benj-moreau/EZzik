@@ -6,10 +6,11 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QString>
 #include <QSound>
-#include <Phonon/MediaObject>
+#include <QTransform>
+/*#include <Phonon/MediaObject>
 #include <Phonon/AudioOutput>
 #include <Phonon/VideoWidget>
-#include <Phonon/MediaSource>
+#include <Phonon/MediaSource>*/
 #include "EZkey.hpp"
 #include <iostream>
 #include <string>
@@ -28,10 +29,10 @@ class EzPiano : public QGraphicsScene{
 	private:
 		std::vector<EzKey*> board;
 		
-		Phonon::MediaObject *mediaObject;
-		Phonon::MediaSource *mediaSource;
-		Phonon::VideoWidget *videoWidget;
-		Phonon::AudioOutput *audioOutput;
+		//Phonon::MediaObject *mediaObject;
+		//Phonon::MediaSource *mediaSource;
+		//Phonon::VideoWidget *videoWidget;
+		//Phonon::AudioOutput *audioOutput;
 };
 
 #endif

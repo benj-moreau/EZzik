@@ -9,7 +9,7 @@ EzReset::EzReset():QPushButton(){
 	QIcon btnIcon(pixmap.scaled(80, 80, Qt::IgnoreAspectRatio, Qt::FastTransformation));
 	setIcon(btnIcon);
 
-	QObject::connect(this,SIGNAL(clicked()),this,SLOT(clickControl()));	
+	QObject::connect(this,SIGNAL(clicked()),this,SLOT(clickControl()));
 }
 EzReset::~EzReset(){}
 
