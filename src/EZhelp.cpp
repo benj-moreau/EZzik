@@ -10,18 +10,18 @@ EzHelp::EzHelp():QWidget(){
 	QLabel *imagePanel = new QLabel();
 	imagePanel->setPixmap(pixmap->scaled(imagePanel->width(),imagePanel->height(),Qt::KeepAspectRatio));
 	imagePanel->setFixedWidth(460);
-	mainHLayout->addWidget(imagePanel);
+    mainHLayout->addWidget(imagePanel,0);
 
 	// rule 1
 	QLabel *idLabel = new QLabel();
-	idLabel->setFixedWidth(20);
-	idLabel->setFixedHeight(20);
+    idLabel->setFixedWidth(20);
+    idLabel->setFixedHeight(20);
 	idLabel->setText("1");
 	idLabel->setFont((QFont("Helvetica [Cronyx]", 16,60)));
 	idLabel->setStyleSheet("QLabel { color : red; }");
 	horizLayout->addWidget(idLabel);
 	idLabel = new QLabel();
-	idLabel->setText(" clickez ce bouton pour réinitialiser\n la partition courante");
+    idLabel->setText(" Cliquez sur ce bouton pour réinitialiser la partition\n courante");
 	idLabel->setFont((QFont("Helvetica [Cronyx]", 14,40)));
 	idLabel->setStyleSheet("QLabel { color : black; }");
 	horizLayout->addWidget(idLabel);
@@ -30,14 +30,14 @@ EzHelp::EzHelp():QWidget(){
 	// rule 2
 	horizLayout = new QHBoxLayout(); 
 	idLabel = new QLabel();
-	idLabel->setFixedWidth(20);
-	idLabel->setFixedHeight(20);
+    idLabel->setFixedWidth(20);
+    idLabel->setFixedHeight(20);
 	idLabel->setText("2");
 	idLabel->setFont((QFont("Helvetica [Cronyx]", 16,60)));
 	idLabel->setStyleSheet("QLabel { color : red; }");
 	horizLayout->addWidget(idLabel);
 	idLabel = new QLabel();
-	idLabel->setText(" clickez ici pour choisir la partition courante");
+    idLabel->setText(" Cliquez ici pour choisir la partition courante");
 	idLabel->setFont((QFont("Helvetica [Cronyx]", 14,40)));
 	idLabel->setStyleSheet("QLabel { color : black; }");
 	horizLayout->addWidget(idLabel);
@@ -46,14 +46,14 @@ EzHelp::EzHelp():QWidget(){
 	// rule 3
 	horizLayout = new QHBoxLayout(); 
 	idLabel = new QLabel();
-	idLabel->setFixedWidth(20);
-	idLabel->setFixedHeight(20);
+    idLabel->setFixedWidth(20);
+    idLabel->setFixedHeight(20);
 	idLabel->setText("3");
 	idLabel->setFont((QFont("Helvetica [Cronyx]", 16,60)));
 	idLabel->setStyleSheet("QLabel { color : red; }");
 	horizLayout->addWidget(idLabel);
 	idLabel = new QLabel();
-	idLabel->setText(" clickez ce bouton pour choisir le dossier\n contenant les partitions");
+    idLabel->setText(" Cliquez sur ce bouton pour choisir le dossier contenant\n les partitions");
 	idLabel->setFont((QFont("Helvetica [Cronyx]", 14,40)));
 	idLabel->setStyleSheet("QLabel { color : black; }");
 	horizLayout->addWidget(idLabel);
@@ -62,14 +62,14 @@ EzHelp::EzHelp():QWidget(){
 	// rule 4
 	horizLayout = new QHBoxLayout(); 
 	idLabel = new QLabel();
-	idLabel->setFixedWidth(20);
-	idLabel->setFixedHeight(20);
+    idLabel->setFixedWidth(20);
+    idLabel->setFixedHeight(20);
 	idLabel->setText("4");
 	idLabel->setFont((QFont("Helvetica [Cronyx]", 16,60)));
 	idLabel->setStyleSheet("QLabel { color : red; }");
 	horizLayout->addWidget(idLabel);
 	idLabel = new QLabel();
-	idLabel->setText(" clickez ce bouton pour afficher l'aide");
+    idLabel->setText(" Cliquez sur ce bouton pour afficher l'aide");
 	idLabel->setFont((QFont("Helvetica [Cronyx]", 14,40)));
 	idLabel->setStyleSheet("QLabel { color : black; }");
 	horizLayout->addWidget(idLabel);
@@ -78,14 +78,14 @@ EzHelp::EzHelp():QWidget(){
 	// rule 5
 	horizLayout = new QHBoxLayout(); 
 	idLabel = new QLabel();
-	idLabel->setFixedWidth(20);
-	idLabel->setFixedHeight(20);
+    idLabel->setFixedWidth(20);
+    idLabel->setFixedHeight(20);
 	idLabel->setText("5");
 	idLabel->setFont((QFont("Helvetica [Cronyx]", 16,60)));
 	idLabel->setStyleSheet("QLabel { color : red; }");
 	horizLayout->addWidget(idLabel);
 	idLabel = new QLabel();
-	idLabel->setText(" cette barre indique la note courrante\n à deviner");
+    idLabel->setText(" Cette barre indique la note courrante à deviner");
 	idLabel->setFont((QFont("Helvetica [Cronyx]", 14,40)));
 	idLabel->setStyleSheet("QLabel { color : black; }");
 	horizLayout->addWidget(idLabel);
@@ -94,14 +94,14 @@ EzHelp::EzHelp():QWidget(){
 	// rule 6
 	horizLayout = new QHBoxLayout(); 
 	idLabel = new QLabel();
-	idLabel->setFixedWidth(20);
-	idLabel->setFixedHeight(20);
+    idLabel->setFixedWidth(20);
+    idLabel->setFixedHeight(20);
 	idLabel->setText("6");
 	idLabel->setFont((QFont("Helvetica [Cronyx]", 16,60)));
 	idLabel->setStyleSheet("QLabel { color : red; }");
 	horizLayout->addWidget(idLabel);
 	idLabel = new QLabel();
-	idLabel->setText(" zone de la partition, les notes vertes\n sont correct et les rouges fausses");
+    idLabel->setText(" Zone de la partition, les notes vertes sont correctes et\n les rouges fausses");
 	idLabel->setFont((QFont("Helvetica [Cronyx]", 14,40)));
 	idLabel->setStyleSheet("QLabel { color : black; }");
 	horizLayout->addWidget(idLabel);
@@ -110,14 +110,14 @@ EzHelp::EzHelp():QWidget(){
 	// rule 7
 	horizLayout = new QHBoxLayout(); 
 	idLabel = new QLabel();
-	idLabel->setFixedWidth(20);
-	idLabel->setFixedHeight(20);
+    idLabel->setFixedWidth(20);
+    idLabel->setFixedHeight(20);
 	idLabel->setText("7");
 	idLabel->setFont((QFont("Helvetica [Cronyx]", 16,60)));
 	idLabel->setStyleSheet("QLabel { color : red; }");
 	horizLayout->addWidget(idLabel);
 	idLabel = new QLabel();
-	idLabel->setText(" le nom des notes que vous avez entré\n s'affiche ici");
+    idLabel->setText(" le nom des notes que vous avez entrées s'affiche ici");
 	idLabel->setFont((QFont("Helvetica [Cronyx]", 14,40)));
 	idLabel->setStyleSheet("QLabel { color : black; }");
 	horizLayout->addWidget(idLabel);
@@ -126,14 +126,14 @@ EzHelp::EzHelp():QWidget(){
 	// rule 8
 	horizLayout = new QHBoxLayout(); 
 	idLabel = new QLabel();
-	idLabel->setFixedWidth(20);
-	idLabel->setFixedHeight(20);
+    idLabel->setFixedWidth(20);
+    idLabel->setFixedHeight(20);
 	idLabel->setText("8");
 	idLabel->setFont((QFont("Helvetica [Cronyx]", 16,60)));
 	idLabel->setStyleSheet("QLabel { color : red; }");
 	horizLayout->addWidget(idLabel);
 	idLabel = new QLabel();
-	idLabel->setText(" clavier du piano, clickez sur une touche\n pour l'assigner à la note courrante");
+    idLabel->setText(" Clavier du piano, cliquez sur une touche pour l'assigner\n à la note courrante");
 	idLabel->setFont((QFont("Helvetica [Cronyx]", 14,40)));
 	idLabel->setStyleSheet("QLabel { color : black; }");
 	horizLayout->addWidget(idLabel);
@@ -143,7 +143,7 @@ EzHelp::EzHelp():QWidget(){
 	line->setFrameShape(QFrame::VLine);
 	line->setFrameShadow(QFrame::Sunken);	
 	mainHLayout->addWidget(line);
-	mainHLayout->addLayout(mainVLayout);
+    mainHLayout->addLayout(mainVLayout,1);
 
 	setLayout(mainHLayout);
 }

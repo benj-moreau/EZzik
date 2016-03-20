@@ -60,9 +60,9 @@ void EzNoteNames::recievePianoKey(std::string key){
 					over = true;
 
 					duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC * 100;
-					QString result = QString("Vous avez mis ")  + QString::number(duration) + QString(" secondes à déchiffrer la partition\n");
-					result += QString("Vous avez fait ")  + QString::number(nbErrors) + QString(" erreurs sur ") + 
-					QString::number(nbErrors + notes.size()) + QString(" touches");
+                    QString result = QString("Vous avez mis <strong>")  + QString::number(duration) + QString(" secondes</strong> à déchiffrer la partition<br/>");
+                    result += QString("Vous avez fait <strong>")  + QString::number(nbErrors) + QString(" erreurs</strong><br/>Sur une partition de <strong>") +
+                    QString::number(notes.size()) + QString(" notes</strong>");
 					QMessageBox::information(new QWidget(), QString("Statistiques de la partition"), result);
 				}else{
 					currentNoteIndex = getNextWrong();
