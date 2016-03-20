@@ -14,6 +14,7 @@ class EzNoteNamesView : public QGraphicsView{
     public :
         EzNoteNamesView(QGraphicsScene*);
         ~EzNoteNamesView();
+		void resizeEvent(QResizeEvent *);
 	private:
 };
 

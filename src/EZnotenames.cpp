@@ -12,8 +12,6 @@ void EzNoteNames::init(){
 	over = false;
 	firstNote = true;
 	isCorrectedOnce = false;
-	space = new QGraphicsLineItem(0,0,0,0);
-	addItem(space);
 }
 
 
@@ -41,10 +39,6 @@ void EzNoteNames::recieveTextNotes(std::vector<EzNote*> realNotes){
         EzTextNote *note = new EzTextNote(realNotes[i],this);
         notes.push_back(note);
 	}
-	removeItem(space);
-	space->setPen(QPen(QBrush(QColor(0,0,0)),5));
-	//space = new QGraphicsLineItem(900/(notes.size()),0,950/(notes.size()),0);
-	addItem(space);
 }
 
 void EzNoteNames::recievePianoKey(std::string key){

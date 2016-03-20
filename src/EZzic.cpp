@@ -24,6 +24,7 @@
 #include "../include/EZnotenames.hpp"
 #include "../include/EZnotenamesview.hpp"
 #include "../include/EZreset.hpp"
+#include "../include/EZhelpbutton.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -42,6 +43,7 @@ int main(int argc, char* argv[])
 
 	EzSelection *selection = new EzSelection();
 	EzFileDialog *fileDialog = new EzFileDialog();
+	EzHelpButton *helpButton = new EzHelpButton();
 
 	EzReset *reset = new EzReset();
 
@@ -63,6 +65,7 @@ int main(int argc, char* argv[])
 	scoreChooseLayout->addWidget(reset);
 	scoreChooseLayout->addWidget(selection);
 	scoreChooseLayout->addWidget(fileDialog);
+	scoreChooseLayout->addWidget(helpButton);
 	
 	mainLayout->addLayout(scoreChooseLayout);
     mainLayout->addWidget(scoreView,1);
@@ -76,8 +79,8 @@ int main(int argc, char* argv[])
     w->setWindowTitle("EZzik");
     w->setWindowIcon(QIcon("res/icone.png"));
 
-    w->setMinimumWidth(430);
-    w->setMinimumHeight(350);
+    w->setMinimumWidth(450);
+    w->setMinimumHeight(450);
     
     w->show();
     

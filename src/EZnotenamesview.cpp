@@ -6,3 +6,9 @@ EzNoteNamesView::EzNoteNamesView(QGraphicsScene* sc):QGraphicsView(sc){
     setAlignment(Qt::AlignTop|Qt::AlignCenter);
 }
 EzNoteNamesView::~EzNoteNamesView(){}
+
+void EzNoteNamesView::resizeEvent(QResizeEvent *event)
+{
+	fitInView(scene()->sceneRect(), Qt::KeepAspectRatio);
+    QGraphicsView::resizeEvent(event);
+}

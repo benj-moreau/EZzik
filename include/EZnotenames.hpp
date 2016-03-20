@@ -47,7 +47,6 @@ class EzNoteNames : public QGraphicsScene{
 		bool isCorrectedOnce;
 		std::clock_t start;
 		int nbErrors;
-		QGraphicsLineItem * space;
 
 		void correct();
 		int getNextWrong();

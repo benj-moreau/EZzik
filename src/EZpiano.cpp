@@ -53,6 +53,7 @@ void EzPiano::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent){
 	if(clickedItem != NULL){
 		clickedKey = dynamic_cast<EzKey*>(clickedItem);
 		clickedKey->setBrush( QBrush( QColor(120, 120, 120),Qt::SolidPattern ) );
+		QSound(QString("sounds/") + QString::fromStdString(clickedKey->getNote()) + QString(".wav"));
 		/*
 		delete mediaSource;
 		mediaSource = new Phonon::MediaSource(QString("sounds/") + QString::fromStdString(clickedKey->getNote()) + QString(".wav"));
