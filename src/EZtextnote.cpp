@@ -7,8 +7,8 @@ EzTextNote::EzTextNote(EzNote* en, QGraphicsScene* parent):QGraphicsSimpleTextIt
 	setPos(realNote->getPos());
 	alter = NULL;
 	noteState = neutral;
-	setPen(QPen(QBrush(QColor(0, 0, 0)), 1));
 	setBrush(QBrush(QColor(0, 0, 0)));
+	setPen(QPen(QBrush(QColor(0, 0, 0)), 1));
 	parent->addItem(this);
 }
 
@@ -19,8 +19,8 @@ EzTextNote::~EzTextNote(){
 void EzTextNote::updateNote(std::string key, EzNoteNames* parent){
 	myNote = key;
 
-	setPen(QPen(QBrush(QColor(0, 0, 0)), 1));
 	setBrush(QBrush(QColor(0, 0, 0)));
+	setPen(QPen(QBrush(QColor(0, 0, 0)), 1));
 
 	if(alter != NULL){
 		parent->removeItem(alter);
